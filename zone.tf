@@ -1,6 +1,6 @@
 resource google_dns_managed_zone zeepalnet {
   name     = "zeepalnet"
-  dns_name = "zeepal.net"
+  dns_name = "zeepal.net."
 
   dnssec_config {
     state = "on"
