@@ -26,7 +26,7 @@ resource google_dns_record_set a_records {
   type         = "A"
   ttl          = 3 * 24 * 60 * 60 # 3 Days to Seconds
 
-  name    = each.key
+  name    = "${each.key != "" ? "${each.key}." : ""}${google_dns_managed_zone.zeepalnet.dns_name}"
   rrdatas = each.value
 }
 
