@@ -34,7 +34,7 @@ resource google_dns_record_set mx_records {
   name         = google_dns_managed_zone.zeepalnet.dns_name
   managed_zone = google_dns_managed_zone.zeepalnet.name
 
-  type = "mx"
+  type = "MX"
   ttl  = 3 * 24 * 60 * 60 # 3 Days to Seconds
 
   rrdatas = [
