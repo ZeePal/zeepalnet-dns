@@ -22,22 +22,22 @@ locals {
 resource google_dns_record_set a_records {
   for_each = local.dns_a_records
 
-  managed_zone = google_dns_managed_zone.zeepalnet.name
+  managed_zone = google_dns_managed_zone.zone.name
   type         = "A"
   ttl          = 3 * 24 * 60 * 60 # 3 Days to Seconds
 
-  name    = "${each.key != "" ? "${each.key}." : ""}${google_dns_managed_zone.zeepalnet.dns_name}"
+  name    = "${each.key != "" ? "${each.key}." : ""}${google_dns_managed_zone.zone.dns_name}"
   rrdatas = each.value
 }
 
 resource google_dns_record_set mx_records {
-  name         = google_dns_managed_zone.zeepalnet.dns_name
-  managed_zone = google_dns_managed_zone.zeepalnet.name
+  name         = google_dns_managed_zone.zone.dns_name
+  managed_zone = google_dns_managed_zone.zone.name
 
   type = "MX"
   ttl  = 3 * 24 * 60 * 60 # 3 Days to Seconds
 
   rrdatas = [
-    "5 mail.zeepal.net."
+    "5 mail.${var.domain}."
   ]
 }
