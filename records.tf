@@ -21,5 +21,5 @@ resource "google_dns_record_set" "a_records" {
   ttl          = 3 * 24 * 60 * 60 # 3 Days to Seconds
 
   name    = "games.${google_dns_managed_zone.zone.dns_name}"
-  rrdatas = "zeepal.freeddns.org."
+  rrdatas = ["zeepal.freeddns.org."]
 }
