@@ -5,10 +5,10 @@ resource "google_dns_record_set" "TMP_insignia" {
 
   name = "gcp.insigniafinancial.sandbox.${google_dns_managed_zone.zone.dns_name}"
   rrdatas = [
-    "ns-cloud-b1.googledomains.com.",
-    "ns-cloud-b2.googledomains.com.",
-    "ns-cloud-b3.googledomains.com.",
-    "ns-cloud-b4.googledomains.com.",
+    "ns-cloud-c1.googledomains.com.",
+    "ns-cloud-c2.googledomains.com.",
+    "ns-cloud-c3.googledomains.com.",
+    "ns-cloud-c4.googledomains.com.",
   ]
 }
 
@@ -19,6 +19,6 @@ resource "google_dns_record_set" "TMP_insignia_dnssec" {
 
   name = "gcp.insigniafinancial.sandbox.${google_dns_managed_zone.zone.dns_name}"
   rrdatas = [
-    "1042 8 2 0392D3F3E31CF6A2A2E26668C5BFB68261E2ECE17EA9BCDC8A1976EE51ECDD62",
+    "62800 8 2 0D4EE5E83F9509102012883658E3B9E8B5606FC77D6FCECC913DA79858F1C39F",
   ]
 }
