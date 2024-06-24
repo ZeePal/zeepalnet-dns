@@ -7,13 +7,32 @@ resource "google_dns_record_set" "mx_records" {
   ttl  = 60 * 60 # 1 Hour
 
   rrdatas = [
-    "5 gmr-smtp-in.l.google.com.",
-    "10 alt1.gmr-smtp-in.l.google.com.",
-    "20 alt2.gmr-smtp-in.l.google.com.",
-    "30 alt3.gmr-smtp-in.l.google.com.",
-    "40 alt4.gmr-smtp-in.l.google.com.",
-    "100 mxa.mailgun.org.", # TODO: after ~24h remove above records and reduce priority to 10
-    "100 mxb.mailgun.org.", # TODO: after ~24h remove above records and reduce priority to 10
+    "10 mxa.mailgun.org.",
+    "10 mxb.mailgun.org.",
+  ]
+}
+
+resource "google_dns_record_set" "spf" {
+  name         = google_dns_managed_zone.zone.dns_name
+  managed_zone = google_dns_managed_zone.zone.name
+
+  type = "TXT"
+  ttl  = 60 * 60 # 1 Hour
+
+  rrdatas = [
+    "\"v=spf1 include:mailgun.org ~all\""
+  ]
+}
+
+resource "google_dns_record_set" "dkim" {
+  name         = "mailo._domainkey.${google_dns_managed_zone.zone.dns_name}"
+  managed_zone = google_dns_managed_zone.zone.name
+
+  type = "TXT"
+  ttl  = 60 * 60 # 1 Hour
+
+  rrdatas = [
+    "\"k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC5yo3zsSpFlVF4keMbFUa+e6W6TLEDrtJKn7hIQbTP4+1NWEsgdOraI8nAKmw/6XncS5rIZanRylmmGWBUZkTadYqVB+P8SUVscgDriBfaCJslR0KtopRCFl5lyDDl5j7BH/u5AHQCSS378NROxnRhgZW6yErNIqC5+Et5Ytk2zQIDAQAB\""
   ]
 }
 
